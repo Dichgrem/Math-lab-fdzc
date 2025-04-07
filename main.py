@@ -1,24 +1,9 @@
-import tarjan_algorithm as ta
+from tarjan_algorithm import run_critical_intersections_finder
 
 def main():
-    """
-    主函数：
-      1. 获取顶点数
-      2. 构建图
-      3. 寻找关键路口并输出
-    """
-    n = ta.get_vertex_count()
-    if n is None:
-        return
-    
-    graph = ta.get_edges(n)
-    cut_vertices = ta.find_critical_intersections(graph)
-    
-    print("\n===== 分析结果 =====")
-    if cut_vertices:
-        print(f"关键路口（共{len(cut_vertices)}个）：{' '.join(map(str, cut_vertices))}")
-    else:
-        print("没有找到关键路口，网络非常健壮！")
+    """主程序入口点"""
+    run_critical_intersections_finder()
 
+# 运行程序
 if __name__ == "__main__":
     main()

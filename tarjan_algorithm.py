@@ -158,33 +158,3 @@ def find_critical_intersections(graph):
     
     # 返回所有被标记为割点的顶点索引列表
     return [i for i, flag in enumerate(is_cut) if flag]
-
-def run_critical_intersections_finder():
-    """
-    运行关键路口查找程序的主要流程:
-    1. 获取图数据
-    2. 运行查找算法
-    3. 显示结果
-    """
-    # 显示程序标题
-    print("城市关键路口查找工具")
-    # 获取图结构
-    graph = get_graph()
-    
-    # 如果用户选择退出，则结束程序
-    if graph is None:
-        print("程序已退出。")
-        return
-    
-    # 调用Tarjan算法查找关键路口（割点）
-    critical = find_critical_intersections(graph)
-    
-    # 根据结果输出相应信息
-    if critical:
-        # 找到关键路口时，显示数量和列表
-        print(f"\n找到 {len(critical)} 个关键路口:")
-        print(", ".join(map(str, critical)))
-        print("\n这些路口如果被阻断,将导致城市交通网络分割!")
-    else:
-        # 未找到关键路口时，显示网络的冗余性良好
-        print("\n未找到关键路口,城市交通网络具有良好的冗余性。")

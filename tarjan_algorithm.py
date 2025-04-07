@@ -1,26 +1,3 @@
-def validate_input(u, v, n, graph):
-    """
-    校验边 (u, v) 合法性：
-      - 路口编号 0 ≤ u,v < n
-      - 不允许自环（u == v）
-      - 不允许重复边（graph[u] 已包含 v）
-    返回 (bool, error_msg)
-    """
-    # 检查顶点编号是否在有效范围内（0到n-1之间）
-    if u < 0 or u >= n or v < 0 or v >= n:
-        # 如果任一顶点编号越界，返回错误信息
-        return False, f"路口编号必须在 0 到 {n-1} 之间！"
-    # 检查是否为自环（起点和终点相同）
-    if u == v:
-        # 如果是自环，返回错误信息
-        return False, "不能添加自环！"
-    # 检查是否已存在这条边（防止重复添加）
-    if v in graph[u]:
-        # 如果边已存在，返回错误信息
-        return False, f"道路 {u} <--> {v} 已存在！"
-    # 验证通过，返回成功标志和空错误信息
-    return True, ""
-
 def get_vertex_count():
     """
     获取用户输入的顶点数量：
@@ -49,6 +26,29 @@ def get_vertex_count():
         except ValueError:
             # 如果输入无法转换为整数，显示错误提示
             print("无效输入！请输入一个正整数。")
+
+def validate_input(u, v, n, graph):
+    """
+    校验边 (u, v) 合法性：
+      - 路口编号 0 ≤ u,v < n
+      - 不允许自环（u == v）
+      - 不允许重复边（graph[u] 已包含 v）
+    返回 (bool, error_msg)
+    """
+    # 检查顶点编号是否在有效范围内（0到n-1之间）
+    if u < 0 or u >= n or v < 0 or v >= n:
+        # 如果任一顶点编号越界，返回错误信息
+        return False, f"路口编号必须在 0 到 {n-1} 之间！"
+    # 检查是否为自环（起点和终点相同）
+    if u == v:
+        # 如果是自环，返回错误信息
+        return False, "不能添加自环！"
+    # 检查是否已存在这条边（防止重复添加）
+    if v in graph[u]:
+        # 如果边已存在，返回错误信息
+        return False, f"道路 {u} <--> {v} 已存在！"
+    # 验证通过，返回成功标志和空错误信息
+    return True, ""
 
 def get_edges(n):
     """
